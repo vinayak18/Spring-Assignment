@@ -22,7 +22,7 @@ public class CustomerService {
 	
 	public ResponseEntity<Object> getCustomerByID(int id) {
 		Optional<Customer> customer = customerRepo.findById(id);
-		if(!customer.isPresent()) {
+		if(customer.isPresent()) {
 			return new ResponseEntity<Object>(customer.get(),HttpStatus.OK);
 		}
 		return new ResponseEntity<Object>("Customer not found!",HttpStatus.NOT_FOUND);
@@ -30,7 +30,7 @@ public class CustomerService {
 	
 	public ResponseEntity<Object> updateCustomer(int id, Customer custData) {
 		Optional<Customer> customer = customerRepo.findById(id);
-		if(!customer.isPresent()) {
+		if(customer.isPresent()) {
 			customerRepo.save(custData);
 			return new ResponseEntity<Object>("Customer Information Updated Successfully!",HttpStatus.OK);
 		}
@@ -39,7 +39,7 @@ public class CustomerService {
 	
 	public ResponseEntity<Object> deleteCustomer(int id) {
 		Optional<Customer> customer = customerRepo.findById(id);
-		if(!customer.isPresent()) {
+		if(customer.isPresent()) {
 			customerRepo.deleteById(id);
 			return new ResponseEntity<Object>("Customer Information Deleted Successfully!",HttpStatus.OK);
 		}
